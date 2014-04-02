@@ -1,0 +1,18 @@
+
+{% extends "site_base.html" %}
+    {% block title %}Home{% endblock %}
+    {% block html_head %}
+        <meta name="robots" content="index, follow, noarchive">
+    {% endblock %}
+{% block main_content %}
+
+
+<div class="row">
+<div class="col-md-6">Hi {{ user.username }}, <br>Danke das Du geo.io testest. Bitte beachte, dass wir uns im Moment in der Beta-Phase befinden und deswegen noch nicht alle Features zur Verfügung stehen und es hier und da mal kleine Probleme geben kann. Falls du Probleme oder Ideen hast, wie wir unser Angebot verbessern können, schreibe uns bitte eine E-Mail an support@geo.io oder nutze den Feedback Button.
+<br>
+<br>
+Dein geo.io-Team
+</div>
+</div>
+
+{% endblock %}

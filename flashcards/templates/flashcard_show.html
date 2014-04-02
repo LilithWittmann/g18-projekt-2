@@ -1,0 +1,26 @@
+{% extends "site_base.html" %}
+{% load markdown_deux_tags %}
+
+
+    {% block title %}Flashcard{% endblock %}
+    {% block html_head %}
+        <meta name="robots" content="index, follow, noarchive">
+    {% endblock %}
+{% block main_content %}
+
+
+<div class="row">
+<div class="col-md-6">
+	<img style="width: 500px;" src="{{ flashcard.image.url}}" />
+</div>
+<div class="col-md-6">
+	{{ flashcard.summary }}
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+{{ flashcard.description|markdown  }}
+</div>
+</div>
+
+{% endblock %}

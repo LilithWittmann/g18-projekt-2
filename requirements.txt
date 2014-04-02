@@ -1,0 +1,10 @@
+django
+psycopg2
+south
+docutils
+django-bootstrap3
+django-gravatar2
+django-social-auth
+pillow
+django-markdown-deux
+django-pagedown

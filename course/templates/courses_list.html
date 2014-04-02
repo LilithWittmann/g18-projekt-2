@@ -1,0 +1,33 @@
+
+{% extends "site_base.html" %}
+    {% block title %}Courses{% endblock %}
+    {% block html_head %}
+        <meta name="robots" content="index, follow, noarchive">
+    {% endblock %}
+{% block main_content %}
+
+
+<div class="row">
+    <div class="col-md-8">
+    <h1>Courses</h1>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+          </thead>
+          <tbody>
+        
+        {% for course in courses%}
+        <tr>
+          <td><a href="{% url 'modules_list' course.slug %}">{{ course }}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+            
+        </table>
+    </div>
+</div>
+
+{% endblock %}
