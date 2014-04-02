@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Course, Module
 import datetime
+from django.core.exceptions import ObjectDoesNotExist
+
+
 
 @login_required
 def courses_list(request):
@@ -12,16 +15,15 @@ def courses_list(request):
 
 
 @login_required
-def modules_list(request, course_id):
-    course = Course.objects.filter(pk=course_id).get()
-    if not course:
-        return Http404
+def modules_list(request, course_name):
+    try:
+        course = Course.objects.filter(slug=course_name).get()
+    except ObjectDoesNotExist:
+        raise Http404        
     modules = Module.objects.filter(course=course.id).all()
     return TemplateResponse(request, "modules_list.html", {"course": course, "modules": modules})
 
 @login_required
-def module_show(request, module_id):
-    module = Module.objects.filter(pk=module_id).get()
-    if not module:
-        return Http404
+def module_show(request, module_slug):
+    raise Http404
 

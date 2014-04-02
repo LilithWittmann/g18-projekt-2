@@ -8,3 +8,4 @@ class FlashcardModelForm(forms.ModelForm):
     summary = forms.CharField(widget=forms.Textarea)
     class Meta:
         model = Flashcard
+        

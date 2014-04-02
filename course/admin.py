@@ -1,5 +1,15 @@
 from django.contrib import admin
 from .models import Course, Module
+from .forms import *
 
-admin.site.register(Course)
-admin.site.register(Module)
+
+class CourseModelAdmin(admin.ModelAdmin):
+    form = CourseForm
+
+
+class ModuleModelAdmin(admin.ModelAdmin):
+    form = ModuleForm
+
+
+admin.site.register(Course, CourseModelAdmin)
+admin.site.register(Module, ModuleModelAdmin)

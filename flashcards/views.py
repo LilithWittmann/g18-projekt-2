@@ -10,7 +10,8 @@ import datetime
 def get_flashcard(request, module_id):
     module = Module.objects.filter(pk=module_id).get()
     if not module:
-        return Http404
+        raise Http404
+    #TODO: Hack for prototyping, dont do this in production
     flashcard = Flashcard.objects.filter(module=module.id).order_by('?')[0]
     return TemplateResponse(request, "flashcard_show.html", {"flashcard": flashcard})
 

@@ -17,14 +17,14 @@ class Course(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        super(test, self).save(*args, **kwargs)
+        super(Course, self).save(*args, **kwargs)
 
 class Module(models.Model):
 
     name = models.CharField(max_length=40, verbose_name=_("name"))
     description = models.CharField(max_length=400, verbose_name=_("description"))
     course = models.ForeignKey(Course, verbose_name=_("course"))
-
+    slug = models.SlugField(max_length=40)
 
     class Meta:
         verbose_name = _('module')
@@ -32,5 +32,9 @@ class Module(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Module, self).save(*args, **kwargs)
 
     
