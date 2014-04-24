@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
 
+    'south',
     'bootstrap3',
     'markdown_deux',
     'pagedown',

@@ -8,4 +8,7 @@ class FlashcardModelForm(forms.ModelForm):
     summary = forms.CharField(widget=forms.Textarea)
     class Meta:
         model = Flashcard
-        
+        fields = [ "name", "module", "summary", "description", "image"]
+
+
+ 

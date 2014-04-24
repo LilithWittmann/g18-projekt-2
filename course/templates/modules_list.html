@@ -5,6 +5,10 @@
         <meta name="robots" content="index, follow, noarchive">
     {% endblock %}
 {% block main_content %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'courses_list' %}">Courses</a></li>
+  <li><a href="{% url 'modules_list' course.id %}">{{ course }}</a></li>
+</ol>
 
 <div class="row">
 
@@ -25,10 +29,10 @@
         {% for module in modules%}
         <tr>
           <td>
-              {{ module }}
+              <a href="{% url 'module_show' course.slug module.slug %}">{{ module }}</a>
           </td>
           <td>
-              <a href="{% url 'get_flashcard' module.id %}"><i class="fa fa-credit-card"></i></a><br>
+              <a href="{% url 'get_flashcard' module.slug %}"><i class="fa fa-credit-card"></i></a><br>
           </td>
           <td>
               <a href="{% url 'get_flashcard' module.id %}"><i class="fa fa-question"></i></a><br>

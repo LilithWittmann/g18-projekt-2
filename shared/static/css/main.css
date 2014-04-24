@@ -1,3 +1,34 @@
 .main-content{
 	padding-top: 60px;
 }
+
+.flashcard  .flashcard-header  img{
+	height: 300px;
+	max-width: 100%;
+
+}
+
+.flashcard  .flashcard-header{
+	height: 300px;
+}
+
+.flashcard .flashcard-header .summary:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+
+ 
+.flashcard  .flashcard-header .summary span{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.options hr{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

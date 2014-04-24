@@ -48,12 +48,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Link</a></li>
-            <li><a href="{% url 'courses_list'%}">Courses</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_staff %}
             <li><a href="{% url 'admin:index' %}">Admin</a></li>
             {% endif %}
+            <li><a href="{% url accounts.logout %}">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -68,6 +68,8 @@
       </div>
 
     </div><!-- /.container -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
           {% bootstrap_javascript %}
         <script src="{{ STATIC_URL }}js/main.js"></script>
 

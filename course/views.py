@@ -1,10 +1,13 @@
-from django.http import Http404, HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponsePermanentRedirect
-from django.template.response import TemplateResponse
+import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Course, Module
-import datetime
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404, HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, HttpResponsePermanentRedirect
+from django.template.response import TemplateResponse
+
+from .models import Course, Module
+from flashcards.models import Flashcard
 
 
 
@@ -15,15 +18,27 @@ def courses_list(request):
 
 
 @login_required
-def modules_list(request, course_name):
+def modules_list(request, course_slug):
     try:
-        course = Course.objects.filter(slug=course_name).get()
+        course = Course.objects.filter(slug=course_slug).get()
     except ObjectDoesNotExist:
-        raise Http404        
+        raise Http404
     modules = Module.objects.filter(course=course.id).all()
     return TemplateResponse(request, "modules_list.html", {"course": course, "modules": modules})
 
-@login_required
-def module_show(request, module_slug):
-    raise Http404
 
+@login_required
+def module_show(request, course_slug, module_slug):
+    try:
+        course = Course.objects.filter(slug=course_slug).get()
+    except ObjectDoesNotExist:
+        raise Http404
+
+    try:
+        module = Module.objects.filter(slug=module_slug, course=course.id).get()
+    except ObjectDoesNotExist:
+        raise Http404
+
+    flashcards = Flashcard.objects.filter(module=module.pk).all()
+
+    return TemplateResponse(request, "module_show.html", {"module": module, "flashcards": flashcards})

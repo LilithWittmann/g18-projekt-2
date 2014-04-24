@@ -7,20 +7,39 @@
         <meta name="robots" content="index, follow, noarchive">
     {% endblock %}
 {% block main_content %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'courses_list' %}">Courses</a></li>
+  <li><a href="{% url 'modules_list' module.course.slug %}">{{ module.course }}</a></li>
+  <li><a href="{% url 'module_show' module.course.slug module.slug %}">{{ module }}</a></li>
+  <li><a href="{% url 'get_flashcard' module.slug %}">Flashcards</a></li>
+</ol>
+<h1>{{ flashcard }}</h1>
+<div class="row flashcard">
+	<div class="col-md-9 flashcard-header">
+		<div class="row">
+			<div class="col-md-6">
+				<img src="{{ flashcard.image.url}}" />
+			</div>
+			<div class="col-md-6 summary">
+				<span>
+				{{ flashcard.summary }}
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+			{{ flashcard.description|markdown  }}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3 options">
+		<div class="well">
+			<h4><i class="fa fa-link"></i> Link</h4>
+			<hr/>
+			<a href="{% url 'get_flashcard_permalink' module.slug flashcard.slug %}">Permalink</a>
+		</div>
+	</div>
+</div>
 
-
-<div class="row">
-<div class="col-md-6">
-	<img style="width: 500px;" src="{{ flashcard.image.url}}" />
-</div>
-<div class="col-md-6">
-	{{ flashcard.summary }}
-</div>
-</div>
-<div class="row">
-<div class="col-md-12">
-{{ flashcard.description|markdown  }}
-</div>
-</div>
 
 {% endblock %}
