@@ -35,8 +35,13 @@
             <tbody>  
               {% for flashcard in flashcards%}
               <tr>
-                <td><a href="{% url 'get_flashcard_permalink' module.slug flashcard.slug %}">{{ flashcard }}</a></td>
-                <td><i class="fa fa-check"></i></td>
+                <td><a href="{% url 'get_flashcard_permalink' module.slug flashcard.flashcard.slug %}">{{ flashcard.flashcard }}</a></td>
+                <td>
+                {% if flashcard.stats > 0 %}
+                  <i class="fa fa-check"></i></td>
+                {% else %}
+                  <i class="fa fa-times"></i></td>
+                {% endif %}
               </tr>
               {% endfor %}
             </tbody>        

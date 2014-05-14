@@ -17,9 +17,11 @@
 <div class="row flashcard">
 	<div class="col-md-9 flashcard-header">
 		<div class="row">
+			{% if flashcard.image %}
 			<div class="col-md-6">
 				<img src="{{ flashcard.image.url}}" />
 			</div>
+			{% endif %}
 			<div class="col-md-6 summary">
 				<span>
 				{{ flashcard.summary }}
@@ -33,10 +35,32 @@
 		</div>
 	</div>
 	<div class="col-md-3 options">
+		{% if in_tour %}
+		<div class="well">
+			<h4><i class="fa fa-link"></i> Navigation</h4>
+			<hr/>
+			<div class="row">
+
+				<div class="col-md-6">
+					{% if previous_card %}
+					<a href="{% url 'get_flashcard_permalink' module.slug previous_card %}"><i class="fa fa-angle-double-left"></i> previous</a>
+					{% endif %}
+				</div>
+				<div class="col-md-6"  style="text-align: right;">
+					<a href="{% url 'get_flashcard' module.slug %}?previous={{flashcard.slug}}">next <i class="fa fa-angle-double-right"></i></a>
+				</div>
+			</div>
+		</div>
+		{% endif %}
 		<div class="well">
 			<h4><i class="fa fa-link"></i> Link</h4>
 			<hr/>
 			<a href="{% url 'get_flashcard_permalink' module.slug flashcard.slug %}">Permalink</a>
+		</div>
+		<div class="well">
+			<h4><i class="fa fa-bar-chart-o "></i> Stats</h4>
+			<hr/>
+			You have seen this flashcard {{ card_views }} times.
 		</div>
 	</div>
 </div>

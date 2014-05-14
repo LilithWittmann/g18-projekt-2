@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', 'shared.views.home', name='home'),
     url(r'^course/', include('course.urls')),
     url(r'^flashcard/', include('flashcards.urls')),
+    url(r'^quiz/', include('quiz.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

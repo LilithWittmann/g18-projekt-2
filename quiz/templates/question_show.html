@@ -1,0 +1,32 @@
+{% extends "site_base.html" %}
+{% load markdown_deux_tags %}
+
+
+    {% block title %}Flashcard{% endblock %}
+    {% block html_head %}
+        <meta name="robots" content="index, follow, noarchive">
+    {% endblock %}
+{% block main_content %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'courses_list' %}">Courses</a></li>
+  <li><a href="{% url 'modules_list' module.course.slug %}">{{ module.course }}</a></li>
+  <li><a href="{% url 'module_show' module.course.slug module.slug %}">{{ module }}</a></li>
+  <li><a href="{% url 'show_question' module.slug %}">Questions</a></li>
+</ol>
+<h1>{{ question }}</h1>
+<div class="row flashcard">
+	<div class="col-md-9 flashcard-header">
+		<div class="row">
+			<div class="col-md-6">
+				<form action="" method="post">
+					{% csrf_token %}
+					{{ answers }}
+					<input type="submit" class="btn" value="next">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

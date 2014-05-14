@@ -7,7 +7,7 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse, HttpRespons
 from django.template.response import TemplateResponse
 
 from .models import Course, Module
-from flashcards.models import Flashcard
+from flashcards.models import *
 
 
 
@@ -41,4 +41,12 @@ def module_show(request, course_slug, module_slug):
 
     flashcards = Flashcard.objects.filter(module=module.pk).all()
 
-    return TemplateResponse(request, "module_show.html", {"module": module, "flashcards": flashcards})
+    flashcard_details = []
+    for flashcard in flashcards:
+        flashcard_details.append({
+            "flashcard": flashcard,
+            "stats": FlashcardCount.objects.filter(user=request.user, flashcard=flashcard).count()
+        })
+
+
+    return TemplateResponse(request, "module_show.html", {"module": module, "flashcards": flashcard_details})
